@@ -1,0 +1,1 @@
+{"project_name":"JS_Async","project_gitrepo":"https://github.com/mission-rnd/mrnd-js-async","language":"javascript","project_page":"http://mission-rnd.github.io/javascript/async.htm","project_validator":"jasmine-node --junitreport --captureExceptions spec/tests/","project_steps":["Arrays","FilePersistence","Weather"]}

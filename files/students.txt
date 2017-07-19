@@ -1,0 +1,3 @@
+{"id":32,"firstName":"FirstName","lastName":"LastName","gender":"male","totalMarks":60}
+{"id":35,"firstName":"Student","lastName":"Stud","gender":"male","totalMarks":70}
+{"id":36,"firstName":"Student1","lastName":"Stud1","gender":"female","totalMarks":70}

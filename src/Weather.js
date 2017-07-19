@@ -8,7 +8,7 @@
 
   https://openweathermap.org/api
 
-  To use the API, You need to have a appID
+  To use the API, You need to have an appID
 
   Create an account at http://home.openweathermap.org/users/sign_in and refer to the API keys tab for your appID
 
@@ -27,6 +27,11 @@
  */
 
 var getWeatherByCityName = function (cityName, appID, callback) {
+    var request= require('request');
+    request({ url:'http://api.openweathermap.org/data/2.5/weather' , qs:{q:cityName,APPID:appID}}, function(err,response,body){
+        callback(err,response,body);
+    });
+
 
 };
 
@@ -43,4 +48,28 @@ var getWeatherByCityName = function (cityName, appID, callback) {
  */
 exports.findCurrentTemperatureByCityName = function (cityName, callback) {
 
+    if(cityName!="") {
+        getWeatherByCityName(cityName,"fb95191aa5ad6fa025e2e71b07a20eb8", function (err,response,data) {
+            var x;
+            try {
+                x = JSON.parse(data);
+                callback(null, x.main.temp - 273.15);
+                return;
+            }
+            catch(e) {
+                var err={
+                    code:'502'
+                }
+                callback(err,null);
+            }
+        });
+    }
+    else if(cityName==""){
+        var err={
+            cod:'502'
+        }
+
+        callback(err,null,null);
+
+    }
 };

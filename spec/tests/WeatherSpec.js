@@ -6,6 +6,7 @@ var getWeatherByCityName = function (cityName,callback) {
     var queryParams = { q:cityName, APPID:'6a56e45751151c2322727cd275197b4e' };
 
     request({url:"http://api.openweathermap.org/data/2.5/weather", qs:queryParams}, function(err, response, body) {
+        console.log(body);
         callback(err,response,body);
     });
 };

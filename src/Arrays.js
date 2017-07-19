@@ -1,3 +1,10 @@
+function getFilePath() {
+
+    var path = require('path');
+    return path.join(__dirname, '..', 'files');
+}
+
+
 var Arrays = function() {
 
     /**
@@ -8,6 +15,27 @@ var Arrays = function() {
      Return the max element of array in the callback in error first way.
      */
     this.findMax = function (array, callback) {
+
+
+        if(array.length<=0){
+
+            callback(null,null)
+        }
+        else {
+            var max = array[0]
+            for (var i = 0; i < array.length; i++) {
+
+                if (array[i] > max) {
+
+                    max = array[i];
+                }
+                else {
+
+                    continue;
+                }
+            }
+            callback(null, max)
+        }
 
     };
 
@@ -26,6 +54,29 @@ var Arrays = function() {
      */
     this.getMaxArray = function (callback) {
 
+        var self=this;
+        var ans=[]
+        var result;
+        var path=require('path')
+        var fs = require('fs');
+        var file = path.join(__dirname, '..', 'files') + "/arrays.txt";
+        var finput=fs.readFileSync(file).toString();
+        var lines=finput.split(/\n/);
+        for(var i=0;i<lines.length-1;i++){
+
+            if(lines[i]==null||lines[i].trim()==null||lines[i]==''){
+
+                ans.push(null)
+            }else{
+4
+                var linearr=lines[i].trim().split(" ").map(Number);
+                self.findMax(linearr,function (err,max) {
+
+                    ans.push(max);
+                });
+            }
+        }
+        callback(null,ans)
     };
 };
 
